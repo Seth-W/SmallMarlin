@@ -5,21 +5,22 @@ public class Fish_Player : Fish {
     
     public static event EventHandler<InfoEventArgs<int>> playerDeathEvent;
     public Animator fishAnim;
-    [SerializeField]
+    [SerializeField, Range(1,1000)]
     private int playerInitSize;
-    Rigidbody rb;
+    [SerializeField, Range (100, 1000)]
+    int colorChanger;
     private bool rightFacing;
 
 
-    void Start ()
+    void Start () 
     {
         setSize(playerInitSize);
         init();
-        rb = GetComponent<Rigidbody>();
         rightFacing = true;
-	}
-	
-	void FixedUpdate ()
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate ()
     {
         Vector3 pos = gameObject.transform.position;
         Vector3 vel = rb.velocity;
@@ -27,8 +28,8 @@ public class Fish_Player : Fish {
         constrainPosition(pos, vel);
         updateAnim(vel);
         validateDirection();
-        
-        Debug.Log("Horizontal velocity is: " + vel.x);
+
+
     }
 
     /**
@@ -50,6 +51,8 @@ public class Fish_Player : Fish {
             rightFacing = true; 
         }
     }
+
+    
 
     /**
     <summary>
@@ -106,6 +109,10 @@ public class Fish_Player : Fish {
         } else
         {
             _size += other.size;
+            if (size < 500)
+                mat.material.color = smallColor * (size * .003f + .25f);
+            else
+                mat.material.color = mediumColor * (size * .0024f - .2f);
         }
     }
 }
