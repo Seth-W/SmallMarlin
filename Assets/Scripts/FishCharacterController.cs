@@ -4,8 +4,8 @@ using System.Collections;
 public class FishCharacterController : MonoBehaviour
 {
     Rigidbody rb;
-    [Range(1,20)]
-    public float scalar;
+    [SerializeField, Range(1,20)]
+    private float scalar;
 
     void Start()
     {
