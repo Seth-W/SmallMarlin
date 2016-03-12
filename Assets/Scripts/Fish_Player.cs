@@ -32,6 +32,12 @@ public class Fish_Player : Fish {
 
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Fish"))
+            eat(other.gameObject.GetComponent<Fish>());
+    }
+
     /**
     <summary>
         Rotates fish between 180 and 0 depending on sign of horizontal velocity
@@ -83,6 +89,7 @@ public class Fish_Player : Fish {
             gameObject.transform.position = pos;
         }
 
+        /*
         if (pos.y > 4.75)
         {
             pos.y = 4.750f;
@@ -98,14 +105,17 @@ public class Fish_Player : Fish {
             vel.y = 0;
             rb.velocity = vel;
         }
+        */
     }
 
-    protected override void eat(Fish other)
+    public override void eat(Fish other)
     {
+        Debug.Log("Player size: " + size + "\nOther size: " + other.size);
+        other.eat(this);
         if (_size <= other.size)
         {
-            playerDeathEvent(this, new InfoEventArgs<int>(_size));
-            GameObject.Destroy(this);
+//            playerDeathEvent(this, new InfoEventArgs<int>(_size));
+//            GameObject.Destroy(this.gameObject);
         } else
         {
             _size += other.size;
