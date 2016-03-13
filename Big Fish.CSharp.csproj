@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\FishSpawnBox.cs" />
     <Compile Include="Assets\Scripts\Fish_Player.cs" />
     <Compile Include="Assets\Scripts\InfoEventArgs.cs" />
+    <Compile Include="Assets\Scripts\Libraries\Interpolate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Fish.shader" />
