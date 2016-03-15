@@ -27,10 +27,12 @@ public class Fish : MonoBehaviour {
 
 
     private Vector3 SCALE = new Vector3(3, 3, 3);
+    private float OUT_OF_BOUNDS = 9;
 
 	void Start ()
     {
-        setSize( (int)(UnityEngine.Random.value * 500f) );
+        float multiple = UnityEngine.Random.value < .75 ? 300f : 500f;
+        setSize( (int)(UnityEngine.Random.value * multiple) );
         init();
         rb = GetComponent<Rigidbody>();
         if (rb == null)
@@ -45,6 +47,8 @@ public class Fish : MonoBehaviour {
     void FixedUpdate()
     {
         rb.velocity = new Vector3(1, 0, 0) * speedValue * _speedWeight;
+        if (Mathf.Abs(transform.position.x) > OUT_OF_BOUNDS)
+            GameObject.Destroy(this.gameObject);
     }
 
 
@@ -77,15 +81,18 @@ public class Fish : MonoBehaviour {
         }
         if (_speedWeight > -.1 && _speedWeight < 0)
         {
-            _speedWeight = .1f;
+            _speedWeight = -.1f;
         }
+        Vector3 pos = transform.position;
+        pos.z = Mathf.Abs(_speedWeight) * 5;
+        transform.position = pos;
     }
 
     public virtual void eat(Fish other)
     {
         if (_size <= other.size)
         {
-            //fishDeathEvent(this, new InfoEventArgs<int>(_size));
+            fishDeathEvent(this, new InfoEventArgs<int>(_size));
             GameObject.Destroy(this.gameObject);
         }
     }
@@ -94,13 +101,15 @@ public class Fish : MonoBehaviour {
     {
         if (left)
         {
-            _speedWeight = 1;
-            transform.rotation = new Quaternion(0, 1, 0, 0.52532198881f);
+            _speedWeight *= 1;
+            //            transform.rotation = new Quaternion(0, 1, 0, 0.52532198881f);
+            transform.rotation = new Quaternion(0, 1, 0, 1f);
         }
         else
         {
-            _speedWeight = -1;
-            transform.rotation = new Quaternion(0, 1, 0, -0.99608783514f);
+            _speedWeight *= -1;
+            //            transform.rotation = new Quaternion(0, 1, 0, -0.99608783514f);
+            transform.rotation = new Quaternion(0, 1, 0, -1f);
         }
     }
 

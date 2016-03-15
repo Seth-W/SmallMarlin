@@ -78,14 +78,14 @@ public class Fish_Player : Fish {
     */
     private void constrainPosition(Vector3 pos, Vector3 vel)
     {
-        if (pos.x > 9.5f)
+        if (pos.x > 7f)
         {
-            pos.x = -9.5f;
+            pos.x = -7f;
             gameObject.transform.position = pos;
         }
-        else if (pos.x < -9.5f)
+        else if (pos.x < -7f)
         {
-            pos.x = 9.5f;
+            pos.x = 7f;
             gameObject.transform.position = pos;
         }
 
@@ -118,7 +118,7 @@ public class Fish_Player : Fish {
 //            GameObject.Destroy(this.gameObject);
         } else
         {
-            _size += other.size;
+            _size += 5;
             if (size < 500)
                 mat.material.color = smallColor * (size * .003f + .25f);
             else

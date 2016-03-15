@@ -46,6 +46,8 @@ using UnityEngine;
  *
  * @author Fernando Zapata (fernando@cpudreams.com)
  * @Traduzione Andrea85cs (andrea85cs@dynematica.it)
+ *
+ *@source http://wiki.unity3d.com/index.php?title=Interpolate
  */
 
 public class Interpolate

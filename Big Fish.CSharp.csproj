@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\Fish_Player.cs" />
     <Compile Include="Assets\Scripts\InfoEventArgs.cs" />
     <Compile Include="Assets\Scripts\Libraries\Interpolate.cs" />
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\ScoreText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Fish.shader" />
