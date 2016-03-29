@@ -119,6 +119,7 @@ public class Fish_Player : Fish {
         } else
         {
             _size += 5;
+            setSize(_size);
             if (size < 500)
                 mat.material.color = smallColor * (size * .003f + .25f);
             else

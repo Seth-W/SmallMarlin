@@ -56,10 +56,10 @@ public class Fish : MonoBehaviour {
     protected void setSize(int i)
     {
         _size = i;
+        transform.localScale = SCALE * _size * .01f;
     }
     protected void init()
     {
-        transform.localScale = SCALE * _size * .01f;
         float input = UnityEngine.Random.value;
 //        Debug.Log("The random value is " + input + ". And the speed weight is " + input * .6f + .4f);
         if (size < 50)
